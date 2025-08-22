@@ -1,0 +1,82 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* Make all elements use border-box for easier sizing */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;  /* horizontal centering */
+  align-items: center;      /* vertical centering */
+  background: #633030;      /* optional page background */
+}
+
+.board {
+  display: inline-block;        
+  border: 3px solid #ad0808;    
+  background: #751659;      
+  padding: 15px;                 /* small margin around cells */
+  margin: 0 auto;               
+}
+
+
+
+
+.row {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.cell {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #050505;    /* border included in size because of border-box */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ddd;
+  margin: 0;                     /* remove any margin */
+  padding: 0;                    /* remove any padding */
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
