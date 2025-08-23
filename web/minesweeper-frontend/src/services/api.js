@@ -15,3 +15,5 @@ export const newGame = (size, bombs) => API.post(`/game/new?size=${size}&bombs=$
 export const revealCell = (x, y) => API.post(`/game/reveal?row=${x}&col=${y}`);
 export const flagCell = (x, y) => API.post(`/game/flag?row=${x}&col=${y}`);
 export const getStatus = () => API.get(`/game/status`);
+export const superReveal = (x, y) => API.post(`/game/sreveal?row=${x}&col=${y}`);
+export const gameReset = (x, y) => API.post(`/game/reset`);

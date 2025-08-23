@@ -8,8 +8,5 @@ public class MinesweeperBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MinesweeperBackendApplication.class, args);
-
-		
 	}
-
 }

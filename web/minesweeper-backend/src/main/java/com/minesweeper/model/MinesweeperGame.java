@@ -23,7 +23,7 @@ public class MinesweeperGame {
     public MinesweeperGame(int size, int bombs) {
         int availableCells = size * size - 8;
         if (bombs > availableCells) {
-            throw new IllegalArgumentException("Too many bombs for this board size and safe area!");
+            throw new IllegalArgumentException("Too many bombs for this board size!");
         }
         if (size <= 0) throw new IllegalArgumentException("size must be > 0");
         if (bombs < 0 || bombs >= size * size) throw new IllegalArgumentException("invalid bombs number");
@@ -101,6 +101,19 @@ public class MinesweeperGame {
             }
         }
     }
+
+    public void superReveal(int row,  int col) {
+        int[] dx = {-1, -1, -1, 0, 0, 1, 1, 1};
+        int[] dy = {-1, 0, 1, -1, 1, -1, 0, 1};
+
+        
+        Cell c = board[row][col];
+        for (int k = 0; k < 8; k++) {
+            int nx = row + dx[k], ny = col + dy[k];
+            reveal(nx,ny);
+        }
+    
+    }
     
     public void reveal(int x, int y) {
         if (!inBounds(x, y) || lost || won) return;
@@ -160,7 +173,7 @@ public class MinesweeperGame {
         for (int i = 0; i < size; i++) for (int j = 0; j < size; j++) if (board[i][j].isSeen()) totalSeen++;
 
         // win by revealing all non-bomb cells
-        if (totalSeen == size * size - bombs) {
+        if (totalSeen == size * size - bombs && flagsUsed == bombs) {
             won = true;
         }
     }

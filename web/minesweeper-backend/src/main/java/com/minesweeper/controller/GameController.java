@@ -45,6 +45,13 @@ public class GameController {
         return game;
     }
 
+    @PostMapping("/sreveal")
+    public MinesweeperGame sReveal(@RequestParam int row, @RequestParam int col){
+        ensureGameStarted();
+        game.superReveal(row, col);
+        return game;
+    }
+
     @GetMapping("/status")
     public MinesweeperGame status() {
         ensureGameStarted();
