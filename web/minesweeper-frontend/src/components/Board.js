@@ -6,24 +6,26 @@ import { revealCell, flagCell } from "../services/api";
 export default function Board() {
     const [board, setBoard] = useState([]);
 
-    const loadBoard = async () => {
-        const data = await getStatus(); 
-        setBoard(data.board);           
-    };
+    const loadBoard = useCallback(async () => {
+        const data = await getStatus();
+        setBoard(data.board);
+    }, []);
+
     const size = 10
+
     const resetGame = useCallback(() => {
         newGame(10, 10).then(loadBoard);
-    }, []); 
+    }, [loadBoard]); 
 
     const handleKeyPress = useCallback((event) => {
         if (event.key === 'r' || event.key === 'R') {
             resetGame();
         }
-    }, [resetGame]);
+    }, [resetGame, loadBoard]);
 
     useEffect(() => {
         newGame(size, 10).then(loadBoard); // start new 8x10 board
-    }, []);
+    }, [loadBoard]);
 
     const handleReveal = useCallback((x, y) => {
         revealCell(x, y).then(loadBoard);
@@ -52,12 +54,11 @@ export default function Board() {
                             cell={cell}
                             onReveal={() => handleReveal(i, j)}
                             onFlag={() => handleFlag(i, j)}
-                            onDoubleClick={() => handleSuperReveal(i, j)}
+                            onSuperReveal={() => handleSuperReveal(i, j)}
                         />
                     ))}
                 </div>
             ))}
         </div>
     );
-
 }

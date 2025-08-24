@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Cell({ cell, onReveal, onFlag, onDoubleClick}) {
+export default function Cell({ cell, onReveal, onFlag, onSuperReveal}) {
     const handleClick = () => {
         if (!cell.seen){
             onReveal();
@@ -12,7 +12,7 @@ export default function Cell({ cell, onReveal, onFlag, onDoubleClick}) {
     };
     const handleDoubleClick = () => {
         if (cell.seen && cell.number > 0) {
-        onDoubleClick();
+        onSuperReveal();
         }
     };
     let display = "";
@@ -27,7 +27,7 @@ export default function Cell({ cell, onReveal, onFlag, onDoubleClick}) {
         className += " bomb";
     } else if (cell.number > 0) {
         display = cell.number;
-        className += " revealed number"; // ADD "revealed" first!
+        className += " revealed number"; 
         className += ` number-${cell.number}`;
     } else {
         className += " revealed";
